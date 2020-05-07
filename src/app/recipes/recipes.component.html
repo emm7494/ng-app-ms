@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-5">
+    <app-recipe-list
+      (recipeSelected)="onRecipeSelect($event)"
+    ></app-recipe-list>
+  </div>
+  <div class="col-md-7">
+    <app-recipe-detail
+      *ngIf="selectedRecipe; else recipeImagePlaceholder"
+      [selectedRecipe]="selectedRecipe"
+    ></app-recipe-detail>
+    <ng-template #recipeImagePlaceholder>
+      <div class="row">
+        <div class="col-12">
+          <img
+            [ngStyle]="{ height: '50vh' }"
+            class="d-block img-thumbnail"
+            src=""
+            alt=""
+            srcset=""
+          />
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
