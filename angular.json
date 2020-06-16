@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "ng-app-ms"
+  "defaultProject": "ng-app-ms",
+  "cli": {
+    "analytics": "602bd166-40f8-4ad0-8a66-1f54519e41a8"
+  }
 }
