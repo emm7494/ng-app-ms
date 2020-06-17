@@ -27,7 +27,11 @@
           >
             Delete
           </button>
-          <button class="mt-2 mr-2 btn btn-primary mb-2" type="button">
+          <button
+            (click)="onClearClick(nameInput, amountInput)"
+            class="mt-2 mr-2 btn btn-primary mb-2"
+            type="button"
+          >
             Clear
           </button>
         </div>

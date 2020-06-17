@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { NavigationService } from '../services/navigation/navigation.service';
 
 @Component({
   selector: 'app-header',
@@ -6,17 +7,16 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  public activeFeature = 'shopping-list';
-  @Output() featureSelected = new EventEmitter<string>();
+  public activeFeature = 'recipes';
 
-  constructor() {}
+  constructor(private navigationService: NavigationService) {}
 
   ngOnInit(): void {
-    this.onSelect(this.activeFeature);
+    this.navigationService.activeFeature.emit(this.activeFeature);
   }
 
-  onSelect(feature: string) {
-    this.activeFeature = feature;
-    this.featureSelected.emit(feature);
+  onSelect(activeFeature: string) {
+    this.navigationService.activeFeature.emit(activeFeature);
+    this.activeFeature = activeFeature;
   }
 }

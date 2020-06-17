@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Ingredient } from '../shared/models/ingredient.model';
+import { ShoppingListService } from '../services/shopping-list/shopping-list.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -7,21 +8,11 @@ import { Ingredient } from '../shared/models/ingredient.model';
   styleUrls: ['./shopping-list.component.css'],
 })
 export class ShoppingListComponent implements OnInit {
-  ingredients: Ingredient[] = [];
-  constructor() {}
+  public ingredients: Ingredient[];
 
-  ngOnInit(): void {}
+  constructor(private shoppingListService: ShoppingListService) {}
 
-  onShoppingListActionFired({ actionType, ingredient }) {
-    switch (actionType) {
-      case 'add':
-        this.ingredients.push(ingredient);
-        break;
-      case 'delete':
-        this.ingredients = this.ingredients.filter(
-          ({ name }) => name !== ingredient.name
-        );
-        break;
-    }
+  ngOnInit(): void {
+    this.ingredients = this.shoppingListService.ingredients;
   }
 }
