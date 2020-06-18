@@ -5,7 +5,7 @@ import { Recipe } from 'src/app/recipes/recipe.model';
   providedIn: 'root',
 })
 export class RecipeService {
-  public recipeSelected = new EventEmitter<Recipe>();
+  public recipeSelect = new EventEmitter<Recipe>();
 
   private recipeList: Recipe[] = [
     new Recipe(
@@ -23,5 +23,9 @@ export class RecipeService {
 
   get recipes() {
     return this.recipeList;
+  }
+
+  set selectedRecipe(recipe: Recipe) {
+    this.recipeSelect.emit(recipe);
   }
 }

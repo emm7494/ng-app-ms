@@ -6,6 +6,7 @@ import { Ingredient } from 'src/app/shared/models/ingredient.model';
 })
 export class ShoppingListService {
   private ingredientList: Ingredient[] = [];
+  public ingredientListChange = new EventEmitter<Ingredient[]>();
 
   constructor() {}
 
@@ -16,13 +17,13 @@ export class ShoppingListService {
     switch (actionType) {
       case 'add':
         this.ingredientList.push(ingredient);
+        this.ingredientListChange.emit(this.ingredientList);
         break;
       case 'delete':
-        const temp = [...this.ingredientList].filter(
+        this.ingredientList = this.ingredientList.filter(
           ({ name }) => name !== ingredient.name
         );
-        this.ingredientList.length = 0;
-        temp.forEach((item) => this.ingredientList.push(item));
+        this.ingredientListChange.emit(this.ingredientList);
         break;
     }
   }

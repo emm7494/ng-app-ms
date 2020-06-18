@@ -5,23 +5,6 @@
 
   <div class="col-md-7">
     <app-recipe-detail
-      *ngIf="selectedRecipe; else recipeImagePlaceholder"
-      [selectedRecipe]="selectedRecipe"
     ></app-recipe-detail>
   </div>
-  <!-- This is a conditionally rendered template -->
-  <ng-template #recipeImagePlaceholder>
-    <div class="row">
-      <div class="col-12">
-        <img
-          [ngStyle]="{ height: '50vh' }"
-          class="d-block img-thumbnail"
-          src=""
-          alt=""
-          srcset=""
-        />
-      </div>
-    </div>
-  </ng-template>
-  <!-- End of ng-template -->
 </div>
