@@ -2,7 +2,7 @@
   <div class="col-12">
     <img
       *ngIf="selectedRecipe; else recipeImagePlaceholder"
-      class="w-100 img-thumbnail"
+      class="w-100 img-thumbnail mt-5 mb-4"
       src="{{ selectedRecipe.imagePath }}"
       alt="{{ selectedRecipe.name }}"
       [ngStyle]="{ maxHeight: '50vh' }"
@@ -13,7 +13,7 @@
         <div class="col-12">
           <img
             [ngStyle]="{ height: '50vh' }"
-            class="d-block img-thumbnail"
+            class="d-block img-thumbnail mt-5 mb-4"
             src=""
             alt=""
             srcset=""
