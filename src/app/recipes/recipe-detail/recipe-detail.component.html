@@ -24,38 +24,54 @@
     <!-- End of ng-template -->
   </div>
 </div>
-<div class="row">
-  <div class="col-12"><h1>Recipe Name</h1></div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-    <div class="dropdown">
-      <button
-        class="btn btn-primary dropdown-toggle"
-        id="navbarDropdown"
-        role="button"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        Manage Recipe
-      </button>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="#">To shopping list</a>
-        <a class="dropdown-item" href="#">Edit Recipe</a>
-        <a class="dropdown-item" href="#">Delete Recipe</a>
-      </div>
+<ng-container *ngIf="selectedRecipe; else selectRecipePlaceholder">
+  <div class="row">
+    <div class="col-12">
+      <h1>{{ selectedRecipe.name }}</h1>
     </div>
-    <div class="row">
-      <div class="col-12">
-        Description
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="dropdown">
+        <button
+          class="my-2 btn btn-primary dropdown-toggle"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Manage Recipe
+        </button>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">To shopping list</a>
+          <a class="dropdown-item" href="#">Edit Recipe</a>
+          <a class="dropdown-item" href="#">Delete Recipe</a>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        Ingredients
+      <div class="row">
+        <div class="my-2 col-12">
+          {{ selectedRecipe.description }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <ul class="list-group">
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+              *ngFor="let ingredient of selectedRecipe.ingredients"
+            >
+            {{ ingredient.name }}
+          <span class="badge badge-secondary badge-pill">{{
+            ingredient.amount
+          }}</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</ng-container>
+<ng-template #selectRecipePlaceholder>
+  <h1 class="display-4">Please select a recipe!</h1>
+</ng-template>
