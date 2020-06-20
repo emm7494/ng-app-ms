@@ -8,9 +8,9 @@ import { ShoppingListService } from 'src/app/services/shopping-list/shopping-lis
   styleUrls: ['./shopping-list-edit.component.css'],
 })
 export class ShoppingListEditComponent implements OnInit {
-  constructor(private shoppingListService: ShoppingListService) {}
+  constructor(private shoppingListService: ShoppingListService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onAddClick(
     event: Event,
@@ -18,17 +18,17 @@ export class ShoppingListEditComponent implements OnInit {
     amountInput: HTMLInputElement
   ) {
     event.preventDefault();
-    this.shoppingListService.action = {
+    this.shoppingListService.action({
       actionType: 'add',
       ingredient: new Ingredient(nameInput.value, +amountInput.value),
-    };
+    });
   }
 
   onDeleteClick(nameInput: HTMLInputElement, amountInput: HTMLInputElement) {
-    this.shoppingListService.action = {
+    this.shoppingListService.action({
       actionType: 'delete',
       ingredient: new Ingredient(nameInput.value, +amountInput.value),
-    };
+    });
   }
 
   onClearClick(nameInput: HTMLInputElement, amountInput: HTMLInputElement) {

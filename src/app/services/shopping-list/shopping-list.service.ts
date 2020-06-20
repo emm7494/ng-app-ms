@@ -13,7 +13,7 @@ export class ShoppingListService {
   get ingredients() {
     return this.ingredientList;
   }
-  set action({ actionType, ingredient }) {
+  action({ actionType, ingredient }) {
     switch (actionType) {
       case 'add':
         this.ingredientList.push(ingredient);
