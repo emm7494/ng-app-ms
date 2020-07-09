@@ -7,10 +7,7 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
   providedIn: 'root',
 })
 export class RecipeService {
-  public recipeSelect = new EventEmitter<Recipe>();
-  public currentRecipe: Recipe;
-
-  private recipeList: Recipe[] = [
+  private recipes: Recipe[] = [
     new Recipe(
       'A Test Recipee',
       'We are simply testing meals!',
@@ -24,18 +21,19 @@ export class RecipeService {
       [new Ingredient('Meat', 2), new Ingredient('Green pepper', 8)]
     ),
   ];
-  constructor(private shoppingListService: ShoppingListService) { }
+  constructor(private shoppingListService: ShoppingListService) {}
 
-  get recipes() {
-    return this.recipeList;
+  getRecipes() {
+    return this.recipes.slice();
   }
 
-  set selectedRecipe(recipe: Recipe) {
-    this.currentRecipe = recipe;
-    this.recipeSelect.emit(recipe);
+  getRecipe(index: number) {
+    return this.recipes.slice()[index];
   }
 
   addIngredientsToShoppingList(selectedRecipe: Recipe) {
-    selectedRecipe.ingredients.forEach(ingredient => this.shoppingListService.action({ actionType: 'add', ingredient }))
+    selectedRecipe.ingredients.forEach((ingredient) =>
+      this.shoppingListService.action({ actionType: 'add', ingredient })
+    );
   }
 }

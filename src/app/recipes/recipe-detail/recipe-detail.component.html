@@ -1,30 +1,15 @@
 <div class="row">
   <div class="col-12">
     <img
-      *ngIf="selectedRecipe; else recipeImagePlaceholder"
+      *ngIf="selectedRecipe"
       class="w-100 img-thumbnail mt-5 mb-4"
       src="{{ selectedRecipe.imagePath }}"
       alt="{{ selectedRecipe.name }}"
       [ngStyle]="{ maxHeight: '50vh' }"
     />
-    <!-- This is a conditionally rendered template -->
-    <ng-template #recipeImagePlaceholder>
-      <div class="row">
-        <div class="col-12">
-          <img
-            [ngStyle]="{ height: '50vh' }"
-            class="d-block img-thumbnail mt-5 mb-4"
-            src=""
-            alt=""
-            srcset=""
-          />
-        </div>
-      </div>
-    </ng-template>
-    <!-- End of ng-template -->
   </div>
 </div>
-<ng-container *ngIf="selectedRecipe; else selectRecipePlaceholder">
+<ng-container *ngIf="selectedRecipe">
   <div class="row">
     <div class="col-12">
       <h1>{{ selectedRecipe.name }}</h1>
@@ -44,9 +29,16 @@
           Manage Recipe
         </button>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" (click)="onAddIngredientsToShoppingList()">To shopping list</a>
-          <a class="dropdown-item" href="#">Edit Recipe</a>
-          <a class="dropdown-item" href="#">Delete Recipe</a>
+          <a class="dropdown-item" (click)="onAddIngredientsToShoppingList()"
+            >To shopping list</a
+          >
+          <a
+            (click)="onEditRecipe()"
+            class="dropdown-item"
+            style="cursor: pointer;"
+            >Edit Recipe</a
+          >
+          <a class="dropdown-item" style="cursor: pointer;">Delete Recipe</a>
         </div>
       </div>
       <div class="row">
@@ -61,10 +53,10 @@
               class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
               *ngFor="let ingredient of selectedRecipe.ingredients"
             >
-            {{ ingredient.name }}
-          <span class="badge badge-secondary badge-pill">{{
-            ingredient.amount
-          }}</span>
+              {{ ingredient.name }}
+              <span class="badge badge-secondary badge-pill">{{
+                ingredient.amount
+              }}</span>
             </li>
           </ul>
         </div>
@@ -72,6 +64,3 @@
     </div>
   </div>
 </ng-container>
-<ng-template #selectRecipePlaceholder>
-  <h1 class="display-4">Please select a recipe!</h1>
-</ng-template>

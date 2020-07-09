@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationService } from './services/navigation/navigation.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +7,8 @@ import { NavigationService } from './services/navigation/navigation.service';
 })
 export class AppComponent implements OnInit {
   public loadedFeature: string;
-  constructor(private navigationService: NavigationService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.navigationService.activeFeature.subscribe((feature: string) => {
-      this.loadedFeature = feature;
-    });
   }
 }

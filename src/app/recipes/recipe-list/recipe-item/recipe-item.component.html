@@ -1,20 +1,21 @@
 <!-- <ul class="list-group"> -->
-  <li class="mb-2 list-group list-group-item-action">
-    <a
-      (click)="onRecipeClick()"
-      href="#"
-      class="media p-2 border border-light rounded text-dark"
-    >
-      <div class="media-body">
-        <h5 class="mt-0 mb-1">{{ recipe.name }}</h5>
-        {{ recipe.description }}
-      </div>
-      <img
-        src="{{ recipe.imagePath }}"
-        class="img-fluid img-thumbnail ml-3 rounded"
-        alt="{{ recipe.name }}"
-        style="max-height: 75px;"
-      />
-    </a>
-  </li>
+<li class="mb-2 list-group list-group-item-action">
+  <a
+    [routerLink]="[index]"
+    routerLinkActive="bg-secondary text-light"
+    class="media p-2 border border-light rounded"
+    style="cursor: pointer;"
+  >
+    <div class="media-body">
+      <h5 class="mt-0 mb-1">{{ recipe.name }}</h5>
+      {{ recipe.description }}
+    </div>
+    <img
+      src="{{ recipe.imagePath }}"
+      class="img-fluid img-thumbnail ml-3 rounded"
+      alt="{{ recipe.name }}"
+      style="max-height: 75px;"
+    />
+  </a>
+</li>
 <!-- </ul> -->
